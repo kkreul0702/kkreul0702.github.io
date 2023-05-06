@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Neural Net study</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <!-- Include the desired CSS theme (you can choose another theme) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/arta.min.css">
+    <script>
+        // Initialize Highlight.js
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+    </script>
+
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+				<header id="header" class="alt">
+					<h1><a href="index.html">Ken Kreul</a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="special">
+								<a href="#menu" class="menuToggle"><span>Menu</span></a>
+								<div id="menu" style="background-color: rgb(14, 19, 35)">
+									<ul>
+										<li><a href="index.html">Home</a></li>
+										
+										<li><a href="PHDProject.html">PhD Project</a></li>
+										<li><a href="PHDMachinLearning.html">Neural Net in my PhD project</a></li>
+										
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header  style="background-image: url('images/Pictures/NeuralNets_6646_4701.jpg');">
+							<h2>Neural Net study</h2>
+							<p>Attempt to improve the significance of my PhD Thesis </p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<section>
+									
+									<header>
+										<h4>The analysis</h4>
+										
+									</header>
+									<p> The idea: The matrix element method produces an intermediate results. Can a machine learning algorithm 
+                                        extract more information by combining these with some kinematic variables?     
+                                    </p>
+
+									<!--<p>
+										The data is stored in the particle physics ROOT data format. I read it with the upROOT python package.
+
+									</p>-->
+
+									<pre><code>
+ListOfSamples = os.listdir(self.path)
+
+for Sample in ListOfSamples:   # ~36 is schanl
+	if not Sample.startswith("ntup"): continue
+	
+	if  Sample.__contains__("data") and not self.DoData : 
+		
+		continue
+	  
+	if self.DebugLevel > 0 : print (Sample)
+	with uproot.open(self.path+Sample) as File:
+		
+		if  not 'physics;1' in File.keys(): 
+			print("Bad Sample: " + Sample)
+			continue
+		Physics = File["physics"]	#Data is in this Tree
+									</code></pre>
+									
+									<p>
+										Electrons and muons must be combined in a lepton feature and Jets split into a leading and sub-leading jet.
+									</p>
+
+									<pre><code>
+import awkward as ak
+
+for Feature in self.ListOfFeature:
+Data = Physics[Feature].array()
+
+length = len(Data)
+if length == 0:
+	print("WARNING this sample has no entries")
+	break
+				
+if Feature.__contains__("jet") :
+	
+	Numpy = ak.to_numpy(Data)
+	
+	JetLead = Numpy.T[0]
+	SubLead = Numpy.T[1] 
+	Dict.update({"Lead_"+Feature:JetLead, "SubLead_"+Feature: SubLead})
+	
+elif Feature.__contains__("el_") or Feature.__contains__("mu_"):
+	# When a muon is in the event the electron p_T array is [] and vice versa
+	Numpy = np.array(ak.to_list(Data), dtype="O")
+	
+	good = [ False if np.size(x) == 0 else True for x in Numpy] 
+	
+	Masked = ak.mask(Data,good) #with this masked array we only take the value if we have the correct particle
+	MaskedNumpy = ak.to_numpy(Masked) 
+							
+	if np.size(MaskedNumpy) == 0: 
+		MaskedNumpy = np.zeros(( len(Masked),1 ))*np.nan
+		
+	Dict.update({Feature:MaskedNumpy[:,0]}) #leptons merged later
+	
+else:
+	Dict.update({Feature : Data})
+																			
+								</code></pre>
+								
+								<p>
+									The data is stored in a pandas Dataframe. Before feeding the data into the neural net, the features are scaled to mean 0 and sigma 1 and the log of the likelihood (the result from the MEM) is computed because this 
+									feature ranges from 10<sup>-10</sup> to 1.
+								</p>
+
+								<pre><code>
+Preproc = Preprocesser(Df, SystName, DirectoryName, CampaignName)
+    
+Df = Preproc.AddLeptons()
+Df = Preproc.MakeSignalBool()
+Df = Preproc.ScaleToXSection(Campaign, DoData) 
+Df = Preproc.DropNaNAndInf()   
+Df = Preproc.LogLikelihood()  
+Df = Preproc.DropNaNAndInf()  # this drops all with llh = 0
+																												
+																	</code></pre>
+
+
+
+								<p>
+									A neural net with gradient descent was trained with the odd eventNumber (unique identifier for each event) and tested on the even eventNumbers and vice versa. Surprisingly, the ROC curves of the MEM and the neural net 
+									completely overlap which means that the neural net is not able to perform better than the MEM.  
+						
+								</p>
+
+
+									
+									<!--
+									
+									<p> 
+                                        
+                                       plots that I can show here: training loss plot, Separation plot toy  
+
+									</p>
+									-->
+									<img src="images/SeparationPlotNN.png" alt="MEMDiscr" width="49%">
+									<img src="images/RocCurve.png" alt="MEMDiscr" width="49%">
+									
+									
+
+										
+                                </section>
+                            </div>
+                        </section>
+                    </article>
+            </div>
+
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				
+				<li><a href="https://github.com/kkreul0702" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="https://www.linkedin.com/in/ken-kreul-2a3658194/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; Ken Kreul</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</footer>
+    </body>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -11,7 +11,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	
+		
+	
+	
 	</head>
+
+
+	
+
+
+
 	<body class="landing is-preload">
 
 		<!-- Page Wrapper -->
@@ -24,13 +34,13 @@
 							<ul>
 								<li class="special">
 									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
+									<div id="menu" style="background-color: rgb(14, 19, 35)">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li><a href="generic.html">Generic</a></li>
-											<li><a href="elements.html">Elements</a></li>
-											<li><a href="#">Sign Up</a></li>
-											<li><a href="#">Log In</a></li>
+											
+											<li><a href="PHDProject.html">PhD Project</a></li>
+											<li><a href="PHDMachinLearning.html">Neural Net in my PhD project</a></li>
+											
 										</ul>
 									</div>
 								</li>
@@ -39,10 +49,10 @@
 					</header>
 
 				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>Ken Kreul</h2>
-							<p>Welcome to my project Portfolio.</p>
+					<section id="banner" style="background-image: url('images/Pictures/Homescreen_6646x.4701jpg.jpg'); background-size: cover; background-position: center;">
+						<div class="inner" >
+							<h2 >Hi I'm Ken</h2>
+							<p style="color: rgb(37, 37, 37);">Welcome to my world <br> of physics and data science.</p>
 							<!--<ul class="actions special">
 								<li><a href="#" class="button primary">Activate</a></li>
 							</ul> -->
@@ -51,42 +61,61 @@
 					</section>
 
 				<!-- One -->
-					<section id="one" class="wrapper style1 special">
-						<div class="inner">
-							<header class="major">
+					<section id="one" class="wrapper style1 special" style="background-color: rgb(14, 19, 35);">
+						<img src="images/Pictures/Portrait_1276x1276.png" alt="ProfilePic" style="width: 20%; display: center;">
+						<div class="inner" >
+							<header class="major" >
+								<br>
 								<h2>I am currently a PhD Student</h2>
-								<p>On this Website, you can find a selection of my projects.<br />
-								Click on the projects to learn more.</p>
+								<p>During my physics bachelor's degree, I was introduced to particle physics and was immediately drawn to the interplay of programming and data analysis with the complex physics in this field. In my bachelor project, I worked on improving the modelling of the decay of hadrons in the C++ program SHERPA. For my master's degree, I specialized in particle physics and completed my project on the unfolding of the di-photon 13 TeV ATLAS analysis.
+									 This work was an essential part of the <a href="https://arxiv.org/abs/2107.09330">  publication</a> and allows for an easy interpretation and comparison of the data with theoretical models.
+									In my PhD project, I am the main analyser of the 13 TeV s-channel single top analysis, responsible for the full analysis chain from the data exploration to the multivariate analysis and the statistical modeling. The goal of this analysis is to discover the predicted but not yet found s-channel single top production, despite the exceptionally small signal contribution (below 5%).
+									
+								</p>
+								<p>
+									I utilized a specialized analysis technique, the Matrix Element Method (MEM), to separate the signal from the background contribution. I constantly searched for ways to optimize this method. I updated the 
+									description of the detector and fine tuned parameters (More on that <a href="PHDProject.html">here</a>). I also explored a new way of 
+									combining intermediate results of the MEM and kinematic variables with a neural network (Look <a href="PHDMachinLearning.html">here</a>).
+
+									
+									While particle physics is an interesting field, I am now seeking to have more impact with my work. Therefore, I am currently looking for a job opportunity as 
+									Data Scientist / Data Analyst. 
+									
+									I am highly motivated to learn new skills and technologies, and I am confident in my ability to adapt quickly to 
+									new challenges. With my experience in handling large datasets and my natural curiosity, I am eager to apply my knowledge to real-world problems as a data scientist.
+									As a Particle Physics PhD student, I have gained invaluable experience in analysing complex data.
+
+									
+									
+									 </p>
 							</header>
-							<ul class="icons major">
-								<li><span class="icon fa-gem major style1"><span class="label">Lorem</span></span></li>
-								<li><span class="icon fa-heart major style2"><span class="label">Ipsum</span></span></li>
-								<li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
-							</ul>
+							
 						</div>
+						
 					</section>
 
 				<!-- Two -->
 					<section id="two" class="wrapper alt style2">
-						<section class="spotlight">
-							<div class="image"><img src="images/ATLAS.jpg" alt="" /></div><div class="content">
-								<h2><a href="generic.html">My PhD project</a> </h2>
+						<section class="spotlight" style="background-color: rgb(10, 35, 55);">
+							<div class="image"><img src="images/Pictures/Atlas_6646x4701.jpg" alt="" /></div><div class="content">
+								<h2><a href="PHDProject.html">My PhD project</a> </h2>
 								<p>I searched for the s-channel single top production channel which is 
 									predicted by the Standard Model but not yet discovered in
 									 proton-proton collisions.</p>
 							</div>
 						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
-								<h2>Tortor dolore feugiat<br />
-								elementum magna</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+						<section class="spotlight" style="background-color: rgb(10, 35, 55);">
+							<div class="image"><img src="images/Pictures/NeuralNets_6646_4701.jpg" alt="" /></div><div class="content">
+								<h2><a href="PHDMachinLearning.html">Neural Net Project</a><br />
+								</h2>
+								<p>I developed a neural net to combine intermediate results of the Matrix Element Method in a new classifier.</p>
 							</div>
 						</section>
 						
+						
 					</section>
 
-				<!-- Three -->
+				<!-- 
 					<section id="three" class="wrapper style3 special">
 						<div class="inner">
 							<header class="major">
@@ -121,32 +150,41 @@
 							</ul>
 						</div>
 					</section>
-
+					Three -->
 				<!-- CTA -->
-					<section id="cta" class="wrapper style4">
+					<section id="cta" class="wrapper style4" style="background-color:  rgb(14, 19, 35);">
 						<div class="inner">
 							<header>
-								<h2>Arcue ut vel commodo</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
+								<h2>Learn more about my skills on my resume.</h2>
+								<p>
+									Feel free to contact me on LinkedIn!
+								</p>
+								
+								
+								
 							</header>
 							<ul class="actions stacked">
-								<li><a href="#" class="button fit primary">Activate</a></li>
-								<li><a href="#" class="button fit">Learn More</a></li>
+								
+								<li><a href="images/Resume.pdf" style="background-color:   rgb(37, 37, 37);" class="button fit primary">Resume</a></li>
 							</ul>
 						</div>
 					</section>
 
+
+					
+
+
+
 				<!-- Footer -->
-					<footer id="footer">
+					<footer id="footer" >
 						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+							
+							<li><a href="https://github.com/kkreul0702" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							<li><a href="https://www.linkedin.com/in/ken-kreul-2a3658194/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							
 						</ul>
 						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; Ken Kreul</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</footer>
 

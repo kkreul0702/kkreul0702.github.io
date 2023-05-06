@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>My PhD Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+				<header id="header" class="alt">
+					<h1><a href="index.html">Ken Kreul</a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="special">
+								<a href="#menu" class="menuToggle"><span>Menu</span></a>
+								<div id="menu">
+									<ul>
+										<li><a href="index.html">Home</a></li>
+										
+										<li><a href="PHDProject.html">PhD Project</a></li>
+										<li><a href="PHDMachinLearning.html">Neural Net in my PhD project</a></li>
+										
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>My PhD Project</h2>
+							<p>Measurement of the s-channel single top production with the ATLAS detector</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<section>
+									
+									<header>
+										<h4>The analysis</h4>
+										
+									</header>
+									
+									<p> The s-channel single top production has the smallest cross-section of the top production channels. That means in the vast amount of data from the ATLAS detector,
+										only a tiny fraction (less than 5%) is what we are looking for. In german you say: "die Nadel im Heuhaufen suchen" which literally translates to "searching the needle in the haystack".
+										The question of the analysis is: "Is there an s-channel single top contribution in the data?".
+
+										Are you ready for an exciting story about searching for the "needle in the haystack" of particle physics data? In this case the needle is the s-channel single top production. 
+										The theory predicts that this signal channel contributes less than 5 % of the data events.
+							
+										</p>
+										
+									<details>
+										<summary>Introduction to the physics of the project</summary>
+										<p>
+											It starts with a bottle of hydrogen.
+										The hydrogen consists of a proton and an electron. The electron is removed and the proton is accelerated to 6.5 TeV (99 % speed of light).
+										Inside the ATLAS detector two accelerated protons collide and since their kinetic energy (energy from their speed) can 
+										be transformed into mass (That's the message of the famous equation E=mc^2), several new particles are produced.
+										
+										The proton is not a fundamental particle. It consists of gluons and quarks. When they collide top quarks are dominantly produced in pairs. A single top quark 
+										is produced by the weak interaction which is (as the name suggests) weaker and therefore the process is less likely. The s-channel single top process is predicted by the Standard Model
+										 (the right now accepted theory of particle physics). However, this phenomenon has yet to be discovered in proton-proton collisions due to the significant challenges it presents in the analysis.
+										
+									</p>
+									  </details>
+
+									
+									<header>
+										<h5>Data Exploration</h5>
+									</header>
+									<p> 
+										To start, we explored the vast amount of data from the ATLAS detector, comparing it to Monte Carlo simulations, which provided our theoretical predictions. 
+										Our dataset was validated by producing plots of kinematic variables, revealing the signal's tiny contribution compared to the background.
+
+										
+									</p>
+									
+
+									<img src="images/dR_ljLep.png" alt="dR_ljLep" width="500" height="700">
+									<img src="images/MTW.png" alt="MTW" width="500" height="700">
+									
+
+								
+									
+
+									<header>
+										<h5>Multivariate Analysis</h5>
+									</header>	
+									<p>
+										To separate the signal from the background, we employed a powerful multivariate analysis technique called the Matrix Element Method (MEM), which outperforms other methods like neural nets or boosted decision trees in this use case. 
+										The Neyman-Pearson Lemma motivated this method, and our input MEM discriminant plot demonstrated its effectiveness in separating signal from background.
+									</p>
+									<img src="images/SR_MEdiscr.png" alt="MEMDiscr" width="500" height="700">
+
+									  
+									<header>
+										<h5>Data Modelling</h5>
+									</header>
+									<p>
+										Next, I built a statistical model of the data, and by maximizing the likelihood of the model, I extracted the parameter of interest. 
+										The goal is to reach a 5 sigma confidence level, which is the ATLAS defined threshold for a discovery. Although I can't reveal the analysis result yet, we're optimistic about our approach.
+									</p>
+
+
+									<p>
+										We continuously looked for ways to improve our analysis, and we discovered that the 2j-vs-3j ratio method was an excellent option. 
+										As you can see in the ROC curve, 
+										by setting the tunable parameter to 0.65, the algorithm's performance can be improved.
+									</p>
+										<img src="images/2jVs3j.png" alt="2j-vs-3j" width="550" height="500">
+
+									
+									<p>
+										I didn't stop at the Matrix Element Method (MEM) for this analysis. I also explored the idea of using a neural network with an intermediate MEM result as input to further improve the results. 
+
+										
+										This study is shown on the page <a href="PHDMachinLearning.html">My PhD project</a>
+									</p>
+									
+
+
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						
+						<li><a href="https://github.com/kkreul0702" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/ken-kreul-2a3658194/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Ken Kreul</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

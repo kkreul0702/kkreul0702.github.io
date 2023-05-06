@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>My PhD Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.center-image {
+			  display: block;
+			  margin-left: auto;
+			  margin-right: auto;
+			}
+			</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+				<header id="header" class="alt">
+					<h1><a href="index.html">Ken Kreul</a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="special">
+								<a href="#menu" class="menuToggle"><span>Menu</span></a>
+								<div id="menu" style="background-color: rgb(14, 19, 35)">
+									<ul>
+										<li><a href="index.html">Home</a></li>
+										
+										<li><a href="PHDProject.html">PhD Project</a></li>
+										<li><a href="PHDMachinLearning.html">Neural Net in my PhD project</a></li>
+										
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</header>
+
+				<!-- Main -->
+					<article id="main" >
+						<header  style="background-image: url('images/Pictures/Atlas_6646x4701.jpg');">
+							<h2>My PhD Project</h2>
+							<p>Measurement of the s-channel single top production with the ATLAS detector</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<section>
+									
+									<header>
+										<h4>The analysis</h4>
+										
+									</header>
+									
+									<p> The s-channel single top production has the smallest cross-section of the top production channels. That means in the vast amount of data from the ATLAS detector,
+										only a tiny fraction (less than 5 %) is what we are looking for. In german you say: "die Nadel im Heuhaufen suchen" which literally translates to "searching for the needle in the haystack".
+										The question of the analysis is: "Is there an s-channel single top contribution in the data?".
+
+										
+										</p>
+										
+									<details>
+										<summary>Introduction to the physics of the project</summary>
+										<p>
+											It starts with a bottle of hydrogen.
+										The hydrogen consists of a proton and an electron. The electron is removed and the proton is accelerated to 6.5 TeV (99.9999991 % of the speed of light).
+										Inside the ATLAS detector two accelerated protons collide and since their kinetic energy (energy from their speed) can 
+										be transformed into mass (that's the message of the famous equation E=mc<sup>2</sup>), several new particles are produced.
+										
+										The proton is not a fundamental particle. It consists of gluons and quarks. When they collide top quarks are dominantly produced in pairs. A single top quark 
+										is produced by the weak interaction which is (as the name suggests) weaker and therefore the process is less likely. Within the single top production processes, the s-channel is even more
+										supressed. That's the reason why this  by the Standard Model, the right now best description of fundamental particles, predicted process was not yet discovered (the threshold for a discovery is the 5 sigma confidence level)
+										 in proton on proton collisions. 
+									</p>
+									  </details>
+									  <br>
+									
+									<header>
+										<h5>Data Exploration</h5>
+									</header>
+									<p> 
+										To start, we explored the vast amount of data from the ATLAS detector, comparing it to Monte Carlo simulations, which provide our theoretical predictions. 
+										Our dataset was validated by producing plots of kinematic variables, revealing the tiny signal contribution compared to the background.
+
+										
+									</p>
+									
+
+									<img src="images/dR_ljLep.png" alt="dR_ljLep" style="width: 49%;">
+									<img src="images/MTW.png" alt="MTW" style="width: 49%;">
+									
+
+								
+									
+
+									<header>
+										<h5>Multivariate Analysis</h5>
+									</header>	
+									<p>
+										To separate the signal from the background, I employed a powerful multivariate analysis technique called the Matrix Element Method (MEM), which outperforms other methods like neural nets or boosted decision trees in this use-case. 
+										The plots below show the discriminating variable.
+										In the left plot, the processes are normalized. The s-channel accumulates at high discriminant values and the background contributions tend towards low values. On the right side, you can see the final discriminant distribution. 
+										In the last bin, the signal still only amounts to approximately 10 %. Here only the theory prediction is shown. As the thesis is not published yet, I am not allowed to show you the actual data of the ATLAS detector. 
+									</p>
+									<figure>
+										<img src="images/SeparationPlotMEM.png" alt="MEMDiscr" style="width: 49%;">
+										<img src="images/SR_MEdiscr.png" alt="MEMDiscr" style="width: 49%;">
+									
+
+									</figure>
+									<p>
+										
+									</p>
+									  <br>
+									<header>
+										<h5>Data Modelling</h5>
+									</header>
+									<p>
+										Next, I built a statistical model of the data and by maximizing the likelihood of the model, I extracted the parameter of interest. The parameter of interest is how much signal is in the data.  
+										The goal is to reach a 5 sigma confidence level. Although I can't reveal the analysis result yet, we're optimistic about our approach.
+									</p>
+
+
+									<p>
+										I continuously looked for ways to improve our analysis and I discovered that the 2j-vs-3j ratio method was an excellent option. 
+										As you can see in the ROC curve, 
+										by setting the tunable parameter to 0.65, the algorithm's performance can be improved.
+									</p>
+
+									<details>
+										<summary>Explanation of the ROC curve</summary>
+										<p>
+										The ROC curve is a measure to compare classifiers. A completely random guess which event is signal and which background would yield a diagonal line from (0,0) to (1,1). 
+										The closer the curve is to the top-left corner of the plot, the better the classifier's performance. 
+									</p>
+									  </details>
+									
+
+										<img src="images/ROC_Screenshot.png" alt="2j-vs-3j" class="center-image" style="width: 50%;">
+
+									
+									<p>
+										I was always looking for improvements of this analysis. Therefore, I also explored the idea of using a neural network with an intermediate MEM result as input to further improve the results. 
+
+										
+										This study is shown on the next <a href="PHDMachinLearning.html">page</a>
+									</p>
+									
+
+
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						
+						<li><a href="https://github.com/kkreul0702" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/ken-kreul-2a3658194/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Ken Kreul</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
