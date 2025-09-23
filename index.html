@@ -100,10 +100,15 @@
         <div class="container">
           <h2>Photos</h2>
           <p>Share your pictures from the day and download everyone’s photos here:</p>
+          <div class="uploader" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0.75rem 0 1rem;">
+            <input id="gdrive-files" type="file" accept="image/*" multiple />
+            <button id="gdrive-upload" class="btn primary">Upload Selected</button>
+            <span id="gdrive-status" style="min-height:1.25rem;color:#e6e6e6"></span>
+          </div>
           <p>
-            <a class="btn primary" target="_blank" rel="noreferrer" href="https://drive.google.com/drive/folders/1PU5nclIETQf5GofHi6axTHNSVlywLJTd?usp=drive_link">Open Dropbox Folder</a>
+            <a class="btn" target="_blank" rel="noreferrer" href="https://drive.google.com/drive/folders/1PU5nclIETQf5GofHi6axTHNSVlywLJTd?usp=drive_link">Open Google Drive Folder</a>
           </p>
-          <p style="margin-top:0.5rem; color:#e6e6e6">Tip: Upload from your phone and use the same link later to download.</p>
+          <p style="margin-top:0.5rem; color:#e6e6e6">Tip: No Google account required for uploads. Link above lets you browse/download later.</p>
         </div>
       </section>
     </main>
