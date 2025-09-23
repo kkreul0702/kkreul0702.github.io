@@ -1,204 +1,121 @@
-<!DOCTYPE HTML>
-<!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Website of Ken Kreul</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	
-		
-	
-	
-	</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Wedding</title>
+    <meta name="description" content="Wedding website with details about wishlist, timetable, location, and hotels." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">Our Wedding</div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <nav class="site-nav" role="navigation">
+          <a class="nav-link" href="#wishlist">Wishlist</a>
+          <a class="nav-link" href="#timetable">Timetable</a>
+          <a class="nav-link" href="#location">Location</a>
+          <a class="nav-link" href="#hotels">Hotels</a>
+          <a class="nav-link" href="#photos">Photos</a>
+        </nav>
+      </div>
+    </header>
 
+    <main>
+      <section id="hero" class="hero">
+        <div class="container hero-inner">
+          <h1 class="hero-title">We’re Getting Married</h1>
+          <p class="hero-subtitle">Join us to celebrate our special day</p>
+          <a class="btn primary" href="#timetable">See the Day Plan</a>
+        </div>
+      </section>
 
-	
+      <section id="wishlist" class="section">
+        <div class="container">
+          <h2>Wishlist</h2>
+          <p>Having you with us is the greatest gift. If you’d still like to contribute,
+             we would appreciate support for our honeymoon or a little surprise you love.</p>
+          <ul class="card-list">
+            <li class="card">
+              <h3>Honeymoon Fund</h3>
+              <p>Contribute any amount to help us create memories together.</p>
+            </li>
+            <li class="card">
+              <h3>Gift Idea</h3>
+              <p>Pick something meaningful—books, board games, or your favorite bottle.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
 
+      <section id="timetable" class="section alt">
+        <div class="container">
+          <h2>Timetable</h2>
+          <div class="timeline">
+            <div class="time-item"><div class="time">14:00</div><div class="event">Ceremony</div></div>
+            <div class="time-item"><div class="time">15:00</div><div class="event">Reception & Photos</div></div>
+            <div class="time-item"><div class="time">18:00</div><div class="event">Dinner</div></div>
+            <div class="time-item"><div class="time">21:00</div><div class="event">Party</div></div>
+          </div>
+        </div>
+      </section>
 
+      <section id="location" class="section">
+        <div class="container">
+          <h2>Location</h2>
+          <p>
+            Venue Name<br>
+            Street 1, City
+          </p>
+          <p>
+            Parking available on site. Dress comfortably.
+          </p>
+          <p>
+            <a class="btn" target="_blank" rel="noreferrer" href="https://maps.google.com">Open in Google Maps</a>
+          </p>
+        </div>
+      </section>
 
-	<body class="landing is-preload">
+      <section id="hotels" class="section alt">
+        <div class="container">
+          <h2>Hotels</h2>
+          <ul class="card-list">
+            <li class="card">
+              <h3>Hotel A</h3>
+              <p>5 minutes on foot from the venue.</p>
+            </li>
+            <li class="card">
+              <h3>Hotel B</h3>
+              <p>10 minutes by car, great breakfast.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+      <section id="photos" class="section">
+        <div class="container">
+          <h2>Photos</h2>
+          <p>Share your pictures from the day and download everyone’s photos here:</p>
+          <p>
+            <a class="btn primary" target="_blank" rel="noreferrer" href="https://drive.google.com/drive/folders/1PU5nclIETQf5GofHi6axTHNSVlywLJTd?usp=drive_link">Open Dropbox Folder</a>
+          </p>
+          <p style="margin-top:0.5rem; color:#e6e6e6">Tip: Upload from your phone and use the same link later to download.</p>
+        </div>
+      </section>
+    </main>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">Ken Kreul</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu" style="background-color: rgb(14, 19, 35)">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											
-											<li><a href="PHDProject.html">PhD Project</a></li>
-											<li><a href="PHDMachinLearning.html">Neural Net in my PhD project</a></li>
-											
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> With love.</p>
+      </div>
+    </footer>
 
-				<!-- Banner -->
-					<section id="banner" style="background-image: url('images/Pictures/Homescreen_6646x.4701jpg.jpg'); background-size: cover; background-position: center;">
-						<div class="inner" >
-							<h2 >Hi I'm Ken</h2>
-							<p style="color: rgb(37, 37, 37);">Welcome to my world <br> of physics and data science.</p>
-							<!--<ul class="actions special">
-								<li><a href="#" class="button primary">Activate</a></li>
-							</ul> -->
-						</div>
-						<a href="#one" class="more scrolly">Learn More</a>
-					</section>
-
-				<!-- One -->
-					<section id="one" class="wrapper style1 special" style="background-color: rgb(14, 19, 35);">
-						<img src="images/Pictures/Portrait_1276x1276.png" alt="ProfilePic" style="width: 20%; display: center;">
-						<div class="inner" >
-							<header class="major" >
-								<br>
-								<h2>I am currently a PhD Student</h2>
-								<p>During my physics bachelor's degree, I was introduced to particle physics and was immediately drawn to the interplay of programming and data analysis with the complex physics in this field. In my bachelor project, I worked on improving the modelling of the decay of hadrons in the C++ program SHERPA. For my master's degree, I specialized in particle physics and completed my project on the unfolding of the di-photon 13 TeV ATLAS analysis.
-									 This work was an essential part of the <a href="https://arxiv.org/abs/2107.09330">  publication</a> and allows for an easy interpretation and comparison of the data with theoretical models.
-									In my PhD project, I am the main analyser of the 13 TeV s-channel single top analysis, responsible for the full analysis chain from the data exploration to the multivariate analysis and the statistical modeling. The goal of this analysis is to discover the predicted but not yet found s-channel single top production, despite the exceptionally small signal contribution (below 5%).
-									
-								</p>
-								<p>
-									I utilized a specialized analysis technique, the Matrix Element Method (MEM), to separate the signal from the background contribution. I constantly searched for ways to optimize this method. I updated the 
-									description of the detector and fine tuned parameters (More on that <a href="PHDProject.html">here</a>). I also explored a new way of 
-									combining intermediate results of the MEM and kinematic variables with a neural network (Look <a href="PHDMachinLearning.html">here</a>).
-
-									
-									While particle physics is an interesting field, I am now seeking to have more impact with my work. 
-									<!--Therefore, I am currently looking for a job opportunity as 
-									Data Scientist / Data Analyst. -->
-									
-									I am highly motivated to learn new skills and technologies, and I am confident in my ability to adapt quickly to 
-									new challenges. With my experience in handling large datasets and my natural curiosity, I am eager to apply my knowledge to real-world problems.
-									
-
-									
-									
-									 </p>
-							</header>
-							
-						</div>
-						
-					</section>
-
-				<!-- Two -->
-					<section id="two" class="wrapper alt style2">
-						<section class="spotlight" style="background-color: rgb(10, 35, 55);">
-							<div class="image"><img src="images/Pictures/Atlas_6646x4701.jpg" alt="" /></div><div class="content">
-								<h2><a href="PHDProject.html">My PhD project</a> </h2>
-								<p>I searched for the s-channel single top production channel which is 
-									predicted by the Standard Model but not yet discovered in
-									 proton-proton collisions.</p>
-							</div>
-						</section>
-						<section class="spotlight" style="background-color: rgb(10, 35, 55);">
-							<div class="image"><img src="images/Pictures/NeuralNets_6646_4701.jpg" alt="" /></div><div class="content">
-								<h2><a href="PHDMachinLearning.html">Neural Net Project</a><br />
-								</h2>
-								<p>I developed a neural net to combine intermediate results of the Matrix Element Method in a new classifier.</p>
-							</div>
-						</section>
-						
-						
-					</section>
-
-				<!-- 
-					<section id="three" class="wrapper style3 special">
-						<div class="inner">
-							<header class="major">
-								<h2>My Skills</h2>
-								
-							</header>
-							<ul class="features">
-								<li class="icon fa-paper-plane">
-									<h3>Python</h3>
-									<p>Placeholder </p>
-								</li>
-								<li class="icon solid fa-laptop">
-									<h3>C++</h3>
-									<p>Placeholder</p>
-								</li>
-								<li class="icon solid fa-code">
-									<h3>SQL</h3>
-									<p>Placeholder.</p>
-								</li>
-								<li class="icon solid fa-headphones-alt">
-									<h3>Machine Learning</h3>
-									<p>Placeholder.</p>
-								</li>
-								<li class="icon fa-heart">
-									<h3>Aenean Primis</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-flag">
-									<h3>Tortor Ut</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-							</ul>
-						</div>
-					</section>
-					Three -->
-				<!-- CTA -->
-					<section id="cta" class="wrapper style4" style="background-color:  rgb(14, 19, 35);">
-						<div class="inner">
-							<header>
-								<h2>Learn more about my skills on my resume.</h2>
-								<p>
-									Feel free to contact me on LinkedIn!
-								</p>
-								
-								
-								
-							</header>
-							<ul class="actions stacked">
-								
-								<li><a href="images/Resume.pdf" style="background-color:   rgb(37, 37, 37);" class="button fit primary">Resume</a></li>
-							</ul>
-						</div>
-					</section>
-
-
-					
-
-
-
-				<!-- Footer -->
-					<footer id="footer" >
-						<ul class="icons">
-							
-							<li><a href="https://github.com/kkreul0702" class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="https://www.linkedin.com/in/ken-kreul-2a3658194/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Ken Kreul</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
+
+
