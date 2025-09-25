@@ -76,4 +76,53 @@
   });
 })();
 
+// Intro overlay cleanup
+(function() {
+  var overlay = document.querySelector('.intro-anim');
+  if (!overlay) return;
+  var remove = function(){ if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay); };
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) { setTimeout(remove, 100); return; }
+  // Keep for one full beat then fade; remove after ~2.8s
+  setTimeout(remove, 2800);
+})();
+
+
+// Photos Uplaod 
+
+const picUpload_btn = document.getElementById('photos-upload');
+const picUpload_output = document.getElementById('photos-status');
+const picUpload_File = document.getElementById('pic-input');
+picUpload_btn.addEventListener('click',upLoadFile);
+function upLoadFile(){
+
+  console.log(picUpload_File.files);
+  const upFiles = picUpload_File.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e){
+        const vals = reader.result.split(',');
+        const obj = {
+          fileName : upFiles.name,
+          mimeType : upFiles.type,
+          data : vals[1]
+        }
+        console.log(obj);
+        google.script.run.withSuccessHandler(success).doUpload(obj);
+    }
+    if(upFiles){
+        reader.readAsDataURL(upFiles);
+    }
+    //console.log('ready');
+}
+function success(rep){
+  //console.log(rep);
+  const a = document.createElement('a');
+  const linkText = document.createTextNode(rep.fileName);
+  output.append(a);
+  a.append(linkText);
+  a.href = rep.url;
+  a.setAttribute('target','_blank');
+}
+
+
  
