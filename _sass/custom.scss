@@ -1,0 +1,5 @@
+.btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; transition-duration: 0.4s; }
+.btn.primary:hover{
+  background-color: #ff0000;
+  color: white;
+}
