@@ -158,6 +158,21 @@
         </div>
       </section>
 
+      <!-- Reservation Modal -->
+      <div id="reservation-modal" class="reservation-modal" style="display: none;">
+        <div class="reservation-modal-overlay"></div>
+        <div class="reservation-modal-content">
+          <h2>Geschenk reservieren</h2>
+          <p id="reservation-item-name" class="reservation-item-name"></p>
+          <p class="reservation-prompt">Bitte geben Sie Ihren Namen ein:</p>
+          <input type="text" id="reservation-name-input" class="reservation-name-input" placeholder="Ihr Name" autofocus>
+          <div class="reservation-modal-buttons">
+            <button class="btn primary" id="reservation-confirm-btn">Reservieren</button>
+            <button class="btn" id="reservation-cancel-btn">Abbrechen</button>
+          </div>
+        </div>
+      </div>
+
       <section id="photos" class="section">
         <div class="container">
           <h1>Fotogalerie</h1>
