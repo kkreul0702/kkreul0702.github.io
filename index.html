@@ -126,10 +126,36 @@
       <section id="music" class="section">
         <div class="container">
           <h1>Eure Musikwünsche für eine unvergessliche Party</h1>
-          <p>Zu einer unvergesslichen Feier gehört natürlich auch die richtige Musik! Habt ihr Lieblingssongs, die auf keinen Fall fehlen dürfen? Dann teilt uns eure Wünsche gerne über das Formular bei der Zusage (RSVP) mit.</p>
+          <p>Zu einer unvergesslichen Feier gehört natürlich auch die richtige Musik! Habt ihr Lieblingssongs, die auf keinen Fall fehlen dürfen? Dann teilt uns eure Wünsche gerne hier mit.</p>
           <p>Ob zum Tanzen, Mitsingen oder einfach für gute Stimmung – wir freuen uns über eure Ideen!</p>
+          
+          <div class="music-wish-form" style="margin-top: 2rem; text-align: center;">
+            <button class="btn primary" id="add-music-wish-btn">Musikwunsch hinzufügen</button>
+          </div>
+
+          <div id="music-wishes-container" class="music-wishes-container" style="margin-top: 2rem;">
+            <div id="music-wishes-loading" class="music-wishes-loading" style="display: none;">Lade Musikwünsche...</div>
+            <div id="music-wishes-list" class="music-wishes-list"></div>
+            <div id="music-wishes-error" class="music-wishes-error" style="display: none;"></div>
+          </div>
         </div>
       </section>
+
+      <!-- Music Wish Modal -->
+      <div id="music-wish-modal" class="reservation-modal" style="display: none;">
+        <div class="reservation-modal-overlay"></div>
+        <div class="reservation-modal-content">
+          <h2>Musikwunsch hinzufügen</h2>
+          <p class="reservation-prompt">Bitte geben Sie Ihren Namen ein:</p>
+          <input type="text" id="music-wish-name-input" class="reservation-name-input" placeholder="Ihr Name" autofocus>
+          <p class="reservation-prompt" style="margin-top: 1rem;">Bitte geben Sie den Musikwunsch ein:</p>
+          <input type="text" id="music-wish-title-input" class="reservation-name-input" placeholder="Künstler - Titel (z.B. ABBA - Dancing Queen)">
+          <div class="reservation-modal-buttons">
+            <button class="btn primary" id="music-wish-confirm-btn">Hinzufügen</button>
+            <button class="btn" id="music-wish-cancel-btn">Abbrechen</button>
+          </div>
+        </div>
+      </div>
 
       <section id="gifts" class="section alt">
         <div class="container">

@@ -153,3 +153,17 @@ a { color: var(--text); text-decoration: none; }
   .reservation-modal-buttons .btn { width: 100%; }
 }
 
+/* Music Wishes */
+.music-wishes-container { margin-top: 2rem; }
+.music-wishes-loading { text-align: center; padding: 2rem; color: #666; }
+.music-wishes-error { background: #ffebee; color: #c62828; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center; }
+.music-wishes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.music-wish-item { background: #ffffff; border: 2px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 1.25rem; transition: transform 0.2s, box-shadow 0.2s; }
+.music-wish-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.music-wish-title { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1b1b1b; margin: 0 0 0.5rem 0; }
+.music-wish-author { font-size: 0.9rem; color: #666; font-style: italic; }
+
+@media (max-width: 640px) {
+  .music-wishes-grid { grid-template-columns: 1fr; }
+}
+
