@@ -179,9 +179,12 @@
           <!-- Admin section for adding items (hidden by default, can be shown via console or admin mode) -->
           <div id="wishlist-admin" class="wishlist-admin" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(0,0,0,0.1);">
             <h2>Geschenk hinzufügen (Admin)</h2>
-            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-              <input type="text" id="new-item-name" placeholder="Geschenkname" style="flex: 1; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
-              <input type="text" id="new-item-description" placeholder="Beschreibung (optional)" style="flex: 1; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="text" id="new-item-name" placeholder="Geschenkname" style="flex: 1; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="text" id="new-item-url" placeholder="Link zum Kaufen (optional)" style="flex: 1; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+              </div>
+              <input type="text" id="new-item-description" placeholder="Beschreibung (optional)" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
               <button class="btn primary" id="add-item-btn">Hinzufügen</button>
             </div>
           </div>
@@ -194,6 +197,9 @@
         <div class="reservation-modal-content">
           <h2>Geschenk besorgen</h2>
           <p id="reservation-item-name" class="reservation-item-name"></p>
+          <div id="reservation-buy-button-container" style="margin-bottom: 1rem; text-align: center; display: none;">
+            <a id="reservation-buy-link" href="#" target="_blank" class="btn primary" style="text-decoration: none; display: inline-block;">Link zum Produkt</a>
+          </div>
           <p class="reservation-prompt">Bitte gib deinen Namen ein:</p>
           <input type="text" id="reservation-name-input" class="reservation-name-input" placeholder="Dein Name" autofocus>
           <div class="reservation-modal-buttons">

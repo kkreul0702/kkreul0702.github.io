@@ -150,6 +150,7 @@ function success(rep){
   var addItemBtn = document.getElementById('add-item-btn');
   var newItemName = document.getElementById('new-item-name');
   var newItemDescription = document.getElementById('new-item-description');
+  var newItemUrl = document.getElementById('new-item-url');
   var currentItems = []; // Store current items
   
   // Reservation modal elements
@@ -158,7 +159,10 @@ function success(rep){
   var reservationNameInput = document.getElementById('reservation-name-input');
   var reservationConfirmBtn = document.getElementById('reservation-confirm-btn');
   var reservationCancelBtn = document.getElementById('reservation-cancel-btn');
+  var reservationBuyButtonContainer = document.getElementById('reservation-buy-button-container');
+  var reservationBuyLink = document.getElementById('reservation-buy-link');
   var pendingReservationItemId = null; // Store item ID while modal is open
+  var pendingReservationItemUrl = null; // Store item URL while modal is open
 
   if (!wishlistContainer) return;
 
@@ -254,12 +258,24 @@ function success(rep){
   }
 
   // Show reservation modal
-  function showReservationModal(itemName, itemId) {
+  function showReservationModal(itemName, itemId, itemUrl) {
     if (!reservationModal || !reservationItemName || !reservationNameInput) return;
     
     pendingReservationItemId = itemId;
+    pendingReservationItemUrl = itemUrl || null;
     reservationItemName.textContent = itemName;
     reservationNameInput.value = '';
+    
+    // Show/hide buy button based on URL
+    if (reservationBuyButtonContainer && reservationBuyLink) {
+      if (itemUrl && itemUrl.trim() !== '') {
+        reservationBuyLink.href = itemUrl;
+        reservationBuyButtonContainer.style.display = 'block';
+      } else {
+        reservationBuyButtonContainer.style.display = 'none';
+      }
+    }
+    
     reservationModal.style.display = 'block';
     reservationNameInput.focus();
     
@@ -272,6 +288,7 @@ function success(rep){
     if (!reservationModal) return;
     reservationModal.style.display = 'none';
     pendingReservationItemId = null;
+    pendingReservationItemUrl = null;
     document.body.style.overflow = '';
   }
 
@@ -333,7 +350,7 @@ function success(rep){
       }
 
       // Show modal to get user's name
-      showReservationModal(item.name, itemId);
+      showReservationModal(item.name, itemId, item.url);
     })
     .catch(function(error) {
       if (error.message !== 'Item already taken' && error.message !== 'User cancelled') {
@@ -437,6 +454,7 @@ function success(rep){
           id: Date.now().toString(),
           name: name,
           description: newItemDescription.value.trim() || '',
+          url: newItemUrl ? newItemUrl.value.trim() : '',
           taken: false
         };
         items.push(newItem);
@@ -445,6 +463,7 @@ function success(rep){
       .then(function() {
         newItemName.value = '';
         newItemDescription.value = '';
+        if (newItemUrl) newItemUrl.value = '';
         alert('Geschenk hinzugefügt!');
         loadWishlist();
       })
