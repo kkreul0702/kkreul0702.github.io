@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist Updater</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        textarea {
+            width: 100%;
+            height: 400px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        button {
+            background: #c89a5b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        button:hover { background: #b0894a; }
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wishlist JSON Updater</h1>
+        <div class="info">
+            <strong>Anleitung:</strong><br>
+            1. Fügen Sie Ihre Geschenke im JSON-Format unten ein<br>
+            2. Jedes Geschenk braucht: id, name, description (optional), taken (false)<br>
+            3. Klicken Sie auf "Wishlist aktualisieren"
+        </div>
+        <textarea id="jsonInput" placeholder='{"items": [{"id": "1", "name": "Geschenk Name", "description": "Beschreibung", "taken": false}]}'>{
+  "items": [
+    {
+      "id": "1",
+      "name": "Küchenmaschine",
+      "description": "Eine hochwertige Küchenmaschine",
+      "taken": false
+    },
+    {
+      "id": "2",
+      "name": "Bettwäsche-Set",
+      "description": "Gemütliche Bettwäsche",
+      "taken": false
+    }
+  ]
+}</textarea>
+        <button onclick="updateWishlist()">Wishlist aktualisieren</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        // Your JSONBin.io credentials
+        const JSONBIN_BIN_ID = '69197c01d0ea881f40eb8c95';
+        const JSONBIN_API_KEY = '$2a$10$rBUVNT3EqeN6obC2Zul/R.LLA48fUYp95aURnOYF20zkmKhekltMG';
+        const JSONBIN_UPDATE_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN_ID;
+
+        function updateWishlist() {
+            const statusDiv = document.getElementById('status');
+            const jsonInput = document.getElementById('jsonInput').value.trim();
+            
+            statusDiv.innerHTML = '';
+            statusDiv.className = 'status';
+
+            try {
+                // Validate JSON
+                const data = JSON.parse(jsonInput);
+                
+                // Validate structure
+                if (!data.items || !Array.isArray(data.items)) {
+                    throw new Error('JSON muss ein "items" Array enthalten');
+                }
+
+                // Validate each item
+                data.items.forEach((item, index) => {
+                    if (!item.id || !item.name) {
+                        throw new Error(`Item ${index + 1} muss "id" und "name" haben`);
+                    }
+                    if (item.taken === undefined) {
+                        item.taken = false; // Set default
+                    }
+                });
+
+                // Update JSONBin.io
+                fetch(JSONBIN_UPDATE_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_API_KEY
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => {
+                            throw new Error('Fehler: ' + text);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = '✓ Wishlist erfolgreich aktualisiert! ' + data.items.length + ' Geschenk(e) hinzugefügt.';
+                })
+                .catch(error => {
+                    statusDiv.className = 'status error';
+                    statusDiv.innerHTML = '✗ Fehler: ' + error.message;
+                });
+
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '✗ JSON Fehler: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
+
