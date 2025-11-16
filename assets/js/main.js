@@ -195,7 +195,7 @@ function success(rep){
     })
     .catch(function(error) {
       console.error('Error loading wishlist:', error);
-      showError('Fehler beim Laden der Geschenkeliste. Bitte versuchen Sie es später erneut.');
+      showError('Fehler beim Laden der Geschenkeliste. Bitte versuche es später erneut.');
       if (wishlistLoading) wishlistLoading.style.display = 'none';
     });
   }
@@ -240,7 +240,7 @@ function success(rep){
         '<h3 class="wishlist-item-name">' + escapeHtml(item.name) + '</h3>' +
         (item.description ? '<p class="wishlist-item-desc">' + escapeHtml(item.description) + '</p>' : '') +
         '</div>' +
-        '<button class="btn primary wishlist-reserve-btn" data-index="' + index + '" data-id="' + item.id + '">Reservieren</button>';
+        '<button class="btn primary wishlist-reserve-btn" data-index="' + index + '" data-id="' + item.id + '">Geschenk besorgen</button>';
       
       var reserveBtn = card.querySelector('.wishlist-reserve-btn');
       reserveBtn.addEventListener('click', function() {
@@ -338,7 +338,7 @@ function success(rep){
     .catch(function(error) {
       if (error.message !== 'Item already taken' && error.message !== 'User cancelled') {
         console.error('Error loading item:', error);
-        alert('Fehler beim Laden. Bitte versuchen Sie es erneut.');
+        alert('Fehler beim Laden. Bitte versuche es später erneut.');
       }
     });
   }
@@ -349,7 +349,7 @@ function success(rep){
     
     var name = reservationNameInput.value.trim();
     if (!name) {
-      alert('Bitte geben Sie Ihren Namen ein.');
+      alert('Bitte gib deinen Namen ein.');
       reservationNameInput.focus();
       return;
     }
@@ -391,13 +391,13 @@ function success(rep){
       return saveWishlist(items);
     })
     .then(function(result) {
-      alert('Geschenk erfolgreich reserviert! Vielen Dank, ' + name + '!');
+      alert('Diese Geschenkidee wurde für dich reserviert ' + name + '! Wir freuen uns wenn du uns diesen Wunsch erfüllst!');
       loadWishlist();
     })
     .catch(function(error) {
       if (error.message !== 'Item already taken' && error.message !== 'User cancelled') {
         console.error('Error reserving item:', error);
-        alert('Fehler beim Reservieren. Bitte versuchen Sie es erneut.');
+        alert('Fehler beim Reservieren. Bitte versuche es später erneut.');
         loadWishlist();
       }
     })
@@ -405,7 +405,7 @@ function success(rep){
       // Re-enable button
       if (reservationConfirmBtn) {
         reservationConfirmBtn.disabled = false;
-        reservationConfirmBtn.textContent = 'Reservieren';
+        reservationConfirmBtn.textContent = 'Geschenk besorgen';
       }
     });
   }
@@ -420,7 +420,7 @@ function success(rep){
     addItemBtn.addEventListener('click', function() {
       var name = newItemName.value.trim();
       if (!name) {
-        alert('Bitte geben Sie einen Geschenknamen ein.');
+        alert('Bitte gib einen Geschenknamen ein.');
         return;
       }
 
@@ -450,7 +450,7 @@ function success(rep){
       })
       .catch(function(error) {
         console.error('Error adding item:', error);
-        alert('Fehler beim Hinzufügen. Bitte versuchen Sie es erneut.');
+        alert('Fehler beim Hinzufügen. Bitte versuche es später erneut.');
       });
     });
   }
@@ -527,7 +527,7 @@ function success(rep){
     })
     .catch(function(error) {
       console.error('Error loading music wishes:', error);
-      showMusicError('Fehler beim Laden der Musikwünsche. Bitte versuchen Sie es später erneut.');
+      showMusicError('Fehler beim Laden der Musikwünsche. Bitte versuche es später erneut.');
       if (musicWishesLoading) musicWishesLoading.style.display = 'none';
     });
   }
@@ -647,13 +647,13 @@ function success(rep){
     var title = musicWishTitleInput.value.trim();
     
     if (!name) {
-      alert('Bitte geben Sie Ihren Namen ein.');
+      alert('Bitte gib deinen Namen ein.');
       musicWishNameInput.focus();
       return;
     }
 
     if (!title) {
-      alert('Bitte geben Sie einen Musikwunsch ein.');
+      alert('Bitte gib deinen Musikwunsch ein.');
       musicWishTitleInput.focus();
       return;
     }
@@ -694,7 +694,7 @@ function success(rep){
     })
     .catch(function(error) {
       console.error('Error adding music wish:', error);
-      alert('Fehler beim Hinzufügen. Bitte versuchen Sie es erneut.');
+      alert('Fehler beim Hinzufügen. Bitte versuche eserneut.');
     })
     .finally(function() {
       // Re-enable button
