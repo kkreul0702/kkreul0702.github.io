@@ -93,7 +93,9 @@
 const picUpload_btn = document.getElementById('photos-upload');
 const picUpload_output = document.getElementById('photos-status');
 const picUpload_File = document.getElementById('pic-input');
-picUpload_btn.addEventListener('click',upLoadFile);
+if (picUpload_btn) {
+  picUpload_btn.addEventListener('click',upLoadFile);
+}
 function upLoadFile(){
 
   console.log(picUpload_File.files);
@@ -124,5 +126,227 @@ function success(rep){
   a.setAttribute('target','_blank');
 }
 
+// Wishlist functionality using JSONBin.io
+(function() {
+  // IMPORTANT: Replace this with your JSONBin.io bin ID
+  // To get a bin ID: 
+  // 1. Go to https://jsonbin.io/
+  // 2. Create a free account
+  // 3. Create a new bin with initial data: {"items": []}
+  // 4. Copy the bin ID from the URL (e.g., if URL is https://jsonbin.io/your-username/b/abc123, the ID is "abc123")
+  // 5. Get your API key from your account settings
+  // 6. Replace the values below
+
+  var JSONBIN_BIN_ID = '69197c01d0ea881f40eb8c95';
+  var JSONBIN_API_KEY = '$2a$10$rBUVNT3EqeN6obC2Zul/R.LLA48fUYp95aURnOYF20zkmKhekltMG';
+  var JSONBIN_READ_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN_ID + '/latest';
+  var JSONBIN_UPDATE_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN_ID;
+
+  var wishlistContainer = document.getElementById('wishlist-container');
+  var wishlistItems = document.getElementById('wishlist-items');
+  var wishlistLoading = document.getElementById('wishlist-loading');
+  var wishlistError = document.getElementById('wishlist-error');
+  var adminSection = document.getElementById('wishlist-admin');
+  var addItemBtn = document.getElementById('add-item-btn');
+  var newItemName = document.getElementById('new-item-name');
+  var newItemDescription = document.getElementById('new-item-description');
+  var currentItems = []; // Store current items
+
+  if (!wishlistContainer) return;
+
+  // Check if we're in admin mode (you can enable this by adding ?admin=true to URL)
+  var urlParams = new URLSearchParams(window.location.search);
+  var isAdmin = urlParams.get('admin') === 'true';
+  if (isAdmin && adminSection) {
+    adminSection.style.display = 'block';
+  }
+
+  // Load wishlist from JSONBin.io
+  function loadWishlist() {
+    if (JSONBIN_BIN_ID === 'YOUR_BIN_ID_HERE' || JSONBIN_API_KEY === 'YOUR_API_KEY_HERE') {
+      showError('Bitte konfigurieren Sie die JSONBin.io Einstellungen in der JavaScript-Datei.');
+      if (wishlistLoading) wishlistLoading.style.display = 'none';
+      return;
+    }
+
+    fetch(JSONBIN_READ_URL, {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': JSONBIN_API_KEY
+      }
+    })
+    .then(function(response) {
+      if (!response.ok) throw new Error('Failed to load wishlist');
+      return response.json();
+    })
+    .then(function(data) {
+      var items = data.record && data.record.items ? data.record.items : [];
+      currentItems = items; // Store items
+      displayWishlist(items);
+      if (wishlistLoading) wishlistLoading.style.display = 'none';
+    })
+    .catch(function(error) {
+      console.error('Error loading wishlist:', error);
+      showError('Fehler beim Laden der Geschenkeliste. Bitte versuchen Sie es später erneut.');
+      if (wishlistLoading) wishlistLoading.style.display = 'none';
+    });
+  }
+
+  // Save wishlist to JSONBin.io
+  function saveWishlist(items) {
+    return fetch(JSONBIN_UPDATE_URL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_API_KEY
+      },
+      body: JSON.stringify({ items: items })
+    })
+    .then(function(response) {
+      if (!response.ok) throw new Error('Failed to save wishlist');
+      return response.json();
+    });
+  }
+
+  // Display wishlist items (only show available ones)
+  function displayWishlist(items) {
+    if (!wishlistItems) return;
+    console.log(items);
+    var availableItems = items.filter(function(item) { return !item.taken; });
+    
+    if (availableItems.length === 0) {
+      wishlistItems.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">Alle Geschenke wurden bereits reserviert. Vielen Dank für eure Großzügigkeit!</p>';
+      return;
+    }
+
+    wishlistItems.innerHTML = '';
+    var grid = document.createElement('div');
+    grid.className = 'wishlist-grid';
+
+    availableItems.forEach(function(item, index) {
+      console.log(availableItems);
+      var card = document.createElement('div');
+      card.className = 'wishlist-item';
+      card.innerHTML = 
+        '<div class="wishlist-item-content">' +
+        '<h3 class="wishlist-item-name">' + escapeHtml(item.name) + '</h3>' +
+        (item.description ? '<p class="wishlist-item-desc">' + escapeHtml(item.description) + '</p>' : '') +
+        '</div>' +
+        '<button class="btn primary wishlist-reserve-btn" data-index="' + index + '" data-id="' + item.id + '">Reservieren</button>';
+      
+      var reserveBtn = card.querySelector('.wishlist-reserve-btn');
+      reserveBtn.addEventListener('click', function() {
+        reserveItem(item.id);
+      });
+      
+      grid.appendChild(card);
+    });
+
+    wishlistItems.appendChild(grid);
+  }
+
+  // Reserve an item
+  function reserveItem(itemId) {
+    // Reload items to get latest state
+    fetch(JSONBIN_READ_URL, {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': JSONBIN_API_KEY
+      }
+    })
+    .then(function(response) {
+      if (!response.ok) throw new Error('Failed to load wishlist');
+      return response.json();
+    })
+    .then(function(data) {
+      var items = data.record && data.record.items ? data.record.items : [];
+      var item = items.find(function(i) { return i.id === itemId; });
+      
+      if (!item || item.taken) {
+        alert('Dieses Geschenk wurde bereits reserviert.');
+        loadWishlist();
+        return Promise.reject(new Error('Item already taken'));
+      }
+
+      if (!confirm('Möchten Sie dieses Geschenk wirklich reservieren?')) {
+        return Promise.reject(new Error('User cancelled'));
+      }
+
+      item.taken = true;
+      item.reservedBy = 'Ein Gast'; // You could collect name/email here
+      item.reservedAt = new Date().toISOString();
+
+      return saveWishlist(items);
+    })
+    .then(function(result) {
+      alert('Geschenk erfolgreich reserviert! Vielen Dank!');
+      loadWishlist();
+    })
+    .catch(function(error) {
+      if (error.message !== 'Item already taken' && error.message !== 'User cancelled') {
+        console.error('Error reserving item:', error);
+        alert('Fehler beim Reservieren. Bitte versuchen Sie es erneut.');
+        loadWishlist();
+      }
+    });
+  }
+
+  // Add new item (admin only)
+  if (addItemBtn && newItemName) {
+    addItemBtn.addEventListener('click', function() {
+      var name = newItemName.value.trim();
+      if (!name) {
+        alert('Bitte geben Sie einen Geschenknamen ein.');
+        return;
+      }
+
+      fetch(JSONBIN_READ_URL, {
+        method: 'GET',
+        headers: {
+          'X-Master-Key': JSONBIN_API_KEY
+        }
+      })
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        var items = data.record && data.record.items ? data.record.items : [];
+        var newItem = {
+          id: Date.now().toString(),
+          name: name,
+          description: newItemDescription.value.trim() || '',
+          taken: false
+        };
+        items.push(newItem);
+        return saveWishlist(items);
+      })
+      .then(function() {
+        newItemName.value = '';
+        newItemDescription.value = '';
+        alert('Geschenk hinzugefügt!');
+        loadWishlist();
+      })
+      .catch(function(error) {
+        console.error('Error adding item:', error);
+        alert('Fehler beim Hinzufügen. Bitte versuchen Sie es erneut.');
+      });
+    });
+  }
+
+  function showError(message) {
+    if (wishlistError) {
+      wishlistError.textContent = message;
+      wishlistError.style.display = 'block';
+    }
+  }
+
+  function escapeHtml(text) {
+    console.log(text);
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Initialize
+  loadWishlist();
+})();
 
  
