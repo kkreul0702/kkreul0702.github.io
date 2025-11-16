@@ -2,11 +2,47 @@
 :root {
   --bg-image: url('../../images/Hintergrund.jpg');
   --overlay: rgba(0,0,0,0.45);
+  --text: #c5957f;
+  --text-dim: #c5957f;
+  --primary: #F5ece8;
+  --surface: rgba(255,255,255,0.08);
+  
+  /* Section colors */
+  --section-bg: #d6b4a5;
+  --section-alt-bg: #ddc1b4;
+  --section-text: #000000;
+  --section-text-dark: #1b1b1b;
+  
+  /* Button colors */
+  --btn-hover-bg: rgba(255, 255, 255, 0.1);
+  --btn-primary-hover-bg: #b5785c;
+  --btn-primary-hover-text: #ffffff;
+  --btn-primary-text: #1b1b1b;
+  --btn-section-hover-bg: rgba(0, 0, 0, 0.1);
+  
+  /* Disabled button colors */
+  --btn-disabled-bg: #cccccc;
+  --btn-disabled-text: #666666;
+  
+  /* Modal colors */
+  --modal-bg: #fff2d5;
+}
+
+
+
+/* 
+Alte Farbcodes
+
+:root {
+  --bg-image: url('../../images/Hintergrund.jpg');
+  --overlay: rgba(0,0,0,0.45);
   --text: #ffffff;
   --text-dim: #e6e6e6;
   --primary: #c89a5b;
   --surface: rgba(255,255,255,0.08);
-}
+} */
+
+
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
@@ -74,51 +110,51 @@ a { color: var(--text); text-decoration: none; }
 .hero-subtitle { margin: 0.5rem 0 1.25rem; }
 
 .btn { display: inline-block; padding: 0.7rem 1.1rem; border-radius: 999px; border: 1px solid #ffffff; background: transparent; color: #ffffff; cursor: pointer; transition-duration: 0.4s; font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-weight: 400; }
-.btn:hover { background: rgba(255, 255, 255, 0.1); }
-.btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; }
+.btn:hover { background: var(--btn-hover-bg); }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: var(--btn-primary-text); }
 .btn.primary:hover {
-  background-color: #581f1f;
-  color: white;
+  background-color: var(--btn-primary-hover-bg);
+  color: var(--btn-primary-hover-text);
 }
 /* Disabled button styling */
 .btn:disabled, .btn[disabled], input.btn:disabled, input.btn[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
-  background: #cccccc !important;
-  border-color: #cccccc !important;
-  color: #666666 !important;
+  background: var(--btn-disabled-bg) !important;
+  border-color: var(--btn-disabled-bg) !important;
+  color: var(--btn-disabled-text) !important;
 }
 .btn.primary:disabled, .btn.primary[disabled], input.btn.primary:disabled, input.btn.primary[disabled] {
-  background: #cccccc !important;
-  border-color: #cccccc !important;
-  color: #666666 !important;
+  background: var(--btn-disabled-bg) !important;
+  border-color: var(--btn-disabled-bg) !important;
+  color: var(--btn-disabled-text) !important;
 }
 .btn.primary:disabled:hover, .btn.primary[disabled]:hover, input.btn.primary:disabled:hover, input.btn.primary[disabled]:hover {
-  background: #cccccc !important;
-  color: #666666 !important;
+  background: var(--btn-disabled-bg) !important;
+  color: var(--btn-disabled-text) !important;
 }
 /* Button styling in sections */
-.section .btn, .section.alt .btn { border-color: #1b1b1b; color: #1b1b1b; font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-.section .btn:hover, .section.alt .btn:hover { background: rgba(0, 0, 0, 0.1); }
-.section .btn.primary, .section.alt .btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; }
-.section .btn.primary:hover, .section.alt .btn.primary:hover { background-color: #581f1f; color: white; }
+.section .btn, .section.alt .btn { border-color: var(--section-text-dark); color: var(--section-text-dark); font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.section .btn:hover, .section.alt .btn:hover { background: var(--btn-section-hover-bg); }
+.section .btn.primary, .section.alt .btn.primary { background: var(--primary); border-color: var(--primary); color: var(--btn-primary-text); }
+.section .btn.primary:hover, .section.alt .btn.primary:hover { background-color: var(--btn-primary-hover-bg); color: var(--btn-primary-hover-text); }
 .section .btn:disabled, .section .btn[disabled], .section.alt .btn:disabled, .section.alt .btn[disabled],
 .section input.btn:disabled, .section input.btn[disabled], .section.alt input.btn:disabled, .section.alt input.btn[disabled] {
-  background: #cccccc !important;
-  border-color: #cccccc !important;
-  color: #666666 !important;
+  background: var(--btn-disabled-bg) !important;
+  border-color: var(--btn-disabled-bg) !important;
+  color: var(--btn-disabled-text) !important;
   opacity: 0.6;
 }
 .section .btn:disabled:hover, .section .btn[disabled]:hover, .section.alt .btn:disabled:hover, .section.alt .btn[disabled]:hover,
 .section input.btn:disabled:hover, .section input.btn[disabled]:hover, .section.alt input.btn:disabled:hover, .section.alt input.btn[disabled]:hover {
-  background: #cccccc !important;
-  color: #666666 !important;
+  background: var(--btn-disabled-bg) !important;
+  color: var(--btn-disabled-text) !important;
 }
 
-.section { padding: 80px 0; margin: 96px 0; background: #fff2d5; }
-.section.alt { background: #ffe09c; }
-.section, .section p, .section a, .section h1, .section h2, .section h3, .section .event { color: #000000; }
+.section { padding: 80px 0; margin: 96px 0; background: var(--section-bg); }
+.section.alt { background: var(--section-alt-bg); }
+.section, .section p, .section a, .section h1, .section h2, .section h3, .section .event { color: var(--section-text); }
 .section h2 { margin-bottom: 1rem; }
 .mt-large { margin-top: 2rem; display: block; }
 
@@ -163,17 +199,17 @@ a { color: var(--text); text-decoration: none; }
 /* Reservation Modal */
 .reservation-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
 .reservation-modal-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); }
-.reservation-modal-content { position: relative; background: #fff2d5; border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); z-index: 1001; }
-.reservation-modal-content h2 { font-family: 'Pinyon Script', cursive; font-size: 2rem; margin: 0 0 1rem 0; color: #1b1b1b; text-align: center; }
+.reservation-modal-content { position: relative; background: var(--modal-bg); border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); z-index: 1001; }
+.reservation-modal-content h2 { font-family: 'Pinyon Script', cursive; font-size: 2rem; margin: 0 0 1rem 0; color: var(--section-text-dark); text-align: center; }
 .reservation-item-name { font-size: 1.2rem; font-weight: 600; color: var(--primary); text-align: center; margin: 0 0 1rem 0; padding: 0.75rem; background: rgba(200, 154, 91, 0.1); border-radius: 8px; }
-.reservation-prompt { color: #1b1b1b; margin: 1rem 0 0.75rem 0; text-align: center; }
+.reservation-prompt { color: var(--section-text-dark); margin: 1rem 0 0.75rem 0; text-align: center; }
 .reservation-name-input { width: 100%; padding: 0.75rem 1rem; border: 2px solid rgba(0, 0, 0, 0.2); border-radius: 8px; font-size: 1rem; margin: 0.5rem 0 1.5rem 0; box-sizing: border-box; transition: border-color 0.2s; }
 .reservation-name-input:focus { outline: none; border-color: var(--primary); }
 .reservation-modal-buttons { display: flex; gap: 1rem; justify-content: center; }
-.reservation-modal-buttons .btn { min-width: 120px; border-color: #1b1b1b; color: #1b1b1b; background: transparent; }
-.reservation-modal-buttons .btn:hover { background: rgba(0, 0, 0, 0.1); }
-.reservation-modal-buttons .btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; }
-.reservation-modal-buttons .btn.primary:hover { background-color: #581f1f; color: white; }
+.reservation-modal-buttons .btn { min-width: 120px; border-color: var(--section-text-dark); color: var(--section-text-dark); background: transparent; }
+.reservation-modal-buttons .btn:hover { background: var(--btn-section-hover-bg); }
+.reservation-modal-buttons .btn.primary { background: var(--primary); border-color: var(--primary); color: var(--btn-primary-text); }
+.reservation-modal-buttons .btn.primary:hover { background-color: var(--btn-primary-hover-bg); color: var(--btn-primary-hover-text); }
 .reservation-modal-buttons .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 @media (max-width: 640px) {
