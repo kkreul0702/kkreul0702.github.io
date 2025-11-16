@@ -472,7 +472,7 @@ function success(rep){
   // Initialize
   loadWishlist();
 })();
-
+ 
 // Music wishes functionality using JSONBin.io
 (function() {
   // IMPORTANT: Replace this with your JSONBin.io bin ID for music wishes
