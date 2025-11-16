@@ -150,7 +150,6 @@ function success(rep){
   var addItemBtn = document.getElementById('add-item-btn');
   var newItemName = document.getElementById('new-item-name');
   var newItemDescription = document.getElementById('new-item-description');
-  var newItemUrl = document.getElementById('new-item-url');
   var currentItems = []; // Store current items
   
   // Reservation modal elements
@@ -454,7 +453,6 @@ function success(rep){
           id: Date.now().toString(),
           name: name,
           description: newItemDescription.value.trim() || '',
-          url: newItemUrl ? newItemUrl.value.trim() : '',
           taken: false
         };
         items.push(newItem);
@@ -463,7 +461,6 @@ function success(rep){
       .then(function() {
         newItemName.value = '';
         newItemDescription.value = '';
-        if (newItemUrl) newItemUrl.value = '';
         alert('Geschenk hinzugefügt!');
         loadWishlist();
       })
@@ -748,6 +745,38 @@ function success(rep){
 
   // Initialize
   loadMusicWishes();
+})();
+
+// WhatsApp contact buttons
+(function() {
+  // Phone numbers stored in JavaScript (not visible in HTML source)
+  var PHONE_LAURA = '491712615330'; // +49 171 2615330 (without + and spaces)
+  var PHONE_KEN = '491712211129'; // +49 171 2211129 (without + and spaces)
+  
+  // Default message for WhatsApp
+  var DEFAULT_MESSAGE = encodeURIComponent('Hallo! Ich habe eine Frage zur Hochzeit.');
+  
+  var whatsappLauraBtn = document.getElementById('whatsapp-laura-btn');
+  var whatsappKenBtn = document.getElementById('whatsapp-ken-btn');
+  
+  // Create WhatsApp links
+  function createWhatsAppLink(phoneNumber, message) {
+    return 'https://wa.me/' + phoneNumber + '?text=' + message;
+  }
+  
+  // Setup Laura's WhatsApp button
+  if (whatsappLauraBtn) {
+    whatsappLauraBtn.href = createWhatsAppLink(PHONE_LAURA, DEFAULT_MESSAGE);
+    whatsappLauraBtn.target = '_blank';
+    whatsappLauraBtn.rel = 'noopener noreferrer';
+  }
+  
+  // Setup Ken's WhatsApp button
+  if (whatsappKenBtn) {
+    whatsappKenBtn.href = createWhatsAppLink(PHONE_KEN, DEFAULT_MESSAGE);
+    whatsappKenBtn.target = '_blank';
+    whatsappKenBtn.rel = 'noopener noreferrer';
+  }
 })();
 
  
