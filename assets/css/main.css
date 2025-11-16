@@ -73,12 +73,18 @@ a { color: var(--text); text-decoration: none; }
 .hero-title { font-size: clamp(2rem, 4vw, 3rem); }
 .hero-subtitle { margin: 0.5rem 0 1.25rem; }
 
-.btn { display: inline-block; padding: 0.7rem 1.1rem; border-radius: 999px; border: 1px solid #ffffff; }
-.btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; transition-duration: 0.4s; }
-.btn.primary:hover{
+.btn { display: inline-block; padding: 0.7rem 1.1rem; border-radius: 999px; border: 1px solid #ffffff; background: transparent; color: #ffffff; cursor: pointer; transition-duration: 0.4s; }
+.btn:hover { background: rgba(255, 255, 255, 0.1); }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; }
+.btn.primary:hover {
   background-color: #581f1f;
   color: white;
 }
+/* Button styling in sections */
+.section .btn, .section.alt .btn { border-color: #1b1b1b; color: #1b1b1b; }
+.section .btn:hover, .section.alt .btn:hover { background: rgba(0, 0, 0, 0.1); }
+.section .btn.primary, .section.alt .btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; }
+.section .btn.primary:hover, .section.alt .btn.primary:hover { background-color: #581f1f; color: white; }
 
 .section { padding: 80px 0; margin: 96px 0; background: #fff2d5; }
 .section.alt { background: #ffe09c; }
@@ -104,4 +110,60 @@ a { color: var(--text); text-decoration: none; }
 /* Map */
 .map-wrap { margin-top: 1rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); }
 .map { width: 100%; height: 360px; border: 0; display: block; }
+
+/* Wishlist */
+.wishlist-container { margin-top: 2rem; }
+.wishlist-loading { text-align: center; padding: 2rem; color: #666; }
+.wishlist-error { background: #ffebee; color: #c62828; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center; }
+.wishlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.wishlist-item { background: #ffffff; border: 2px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+.wishlist-item:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+.wishlist-item-content { flex: 1; margin-bottom: 1rem; }
+.wishlist-item-name { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 600; margin: 0 0 0.5rem 0; color: #1b1b1b; }
+.wishlist-item-desc { color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0; }
+.wishlist-reserve-btn { width: 100%; margin-top: auto; }
+.wishlist-admin h2 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+@media (max-width: 640px) {
+  .wishlist-grid { grid-template-columns: 1fr; }
+  .wishlist-admin > div { flex-direction: column; }
+  .wishlist-admin input { margin-bottom: 0.5rem; }
+}
+
+/* Reservation Modal */
+.reservation-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.reservation-modal-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); }
+.reservation-modal-content { position: relative; background: #fff2d5; border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); z-index: 1001; }
+.reservation-modal-content h2 { font-family: 'Pinyon Script', cursive; font-size: 2rem; margin: 0 0 1rem 0; color: #1b1b1b; text-align: center; }
+.reservation-item-name { font-size: 1.2rem; font-weight: 600; color: var(--primary); text-align: center; margin: 0 0 1rem 0; padding: 0.75rem; background: rgba(200, 154, 91, 0.1); border-radius: 8px; }
+.reservation-prompt { color: #1b1b1b; margin: 1rem 0 0.75rem 0; text-align: center; }
+.reservation-name-input { width: 100%; padding: 0.75rem 1rem; border: 2px solid rgba(0, 0, 0, 0.2); border-radius: 8px; font-size: 1rem; margin: 0.5rem 0 1.5rem 0; box-sizing: border-box; transition: border-color 0.2s; }
+.reservation-name-input:focus { outline: none; border-color: var(--primary); }
+.reservation-modal-buttons { display: flex; gap: 1rem; justify-content: center; }
+.reservation-modal-buttons .btn { min-width: 120px; border-color: #1b1b1b; color: #1b1b1b; background: transparent; }
+.reservation-modal-buttons .btn:hover { background: rgba(0, 0, 0, 0.1); }
+.reservation-modal-buttons .btn.primary { background: var(--primary); border-color: var(--primary); color: #1b1b1b; }
+.reservation-modal-buttons .btn.primary:hover { background-color: #581f1f; color: white; }
+.reservation-modal-buttons .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+@media (max-width: 640px) {
+  .reservation-modal-content { padding: 1.5rem; }
+  .reservation-modal-content h2 { font-size: 1.6rem; }
+  .reservation-modal-buttons { flex-direction: column; }
+  .reservation-modal-buttons .btn { width: 100%; }
+}
+
+/* Music Wishes */
+.music-wishes-container { margin-top: 2rem; }
+.music-wishes-loading { text-align: center; padding: 2rem; color: #666; }
+.music-wishes-error { background: #ffebee; color: #c62828; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center; }
+.music-wishes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.music-wish-item { background: #ffffff; border: 2px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 1.25rem; transition: transform 0.2s, box-shadow 0.2s; }
+.music-wish-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.music-wish-title { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1b1b1b; margin: 0 0 0.5rem 0; }
+.music-wish-author { font-size: 0.9rem; color: #666; font-style: italic; }
+
+@media (max-width: 640px) {
+  .music-wishes-grid { grid-template-columns: 1fr; }
+}
 
