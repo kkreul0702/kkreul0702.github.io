@@ -750,8 +750,8 @@ function success(rep){
 // WhatsApp contact buttons
 (function() {
   // Phone numbers stored in JavaScript (not visible in HTML source)
-  var PHONE_LAURA = '491712615330'; // +49 171 2615330 (without + and spaces)
-  var PHONE_KEN = '491712211129'; // +49 171 2211129 (without + and spaces)
+  var PHONE_THERAI = '4917699920563'; 
+  var PHONE_PHIL = '491629825448'; 
   
   // Default message for WhatsApp
   var DEFAULT_MESSAGE = encodeURIComponent('Hallo! Ich habe eine Frage zur Hochzeit.');
@@ -766,14 +766,14 @@ function success(rep){
   
   // Setup Laura's WhatsApp button
   if (whatsappLauraBtn) {
-    whatsappLauraBtn.href = createWhatsAppLink(PHONE_LAURA, DEFAULT_MESSAGE);
+    whatsappLauraBtn.href = createWhatsAppLink(PHONE_THERAI, DEFAULT_MESSAGE);
     whatsappLauraBtn.target = '_blank';
     whatsappLauraBtn.rel = 'noopener noreferrer';
   }
   
   // Setup Ken's WhatsApp button
   if (whatsappKenBtn) {
-    whatsappKenBtn.href = createWhatsAppLink(PHONE_KEN, DEFAULT_MESSAGE);
+    whatsappKenBtn.href = createWhatsAppLink(PHONE_PHIL, DEFAULT_MESSAGE);
     whatsappKenBtn.target = '_blank';
     whatsappKenBtn.rel = 'noopener noreferrer';
   }
