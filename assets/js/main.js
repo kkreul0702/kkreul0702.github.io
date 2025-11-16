@@ -151,6 +151,14 @@ function success(rep){
   var newItemName = document.getElementById('new-item-name');
   var newItemDescription = document.getElementById('new-item-description');
   var currentItems = []; // Store current items
+  
+  // Reservation modal elements
+  var reservationModal = document.getElementById('reservation-modal');
+  var reservationItemName = document.getElementById('reservation-item-name');
+  var reservationNameInput = document.getElementById('reservation-name-input');
+  var reservationConfirmBtn = document.getElementById('reservation-confirm-btn');
+  var reservationCancelBtn = document.getElementById('reservation-cancel-btn');
+  var pendingReservationItemId = null; // Store item ID while modal is open
 
   if (!wishlistContainer) return;
 
@@ -245,6 +253,62 @@ function success(rep){
     wishlistItems.appendChild(grid);
   }
 
+  // Show reservation modal
+  function showReservationModal(itemName, itemId) {
+    if (!reservationModal || !reservationItemName || !reservationNameInput) return;
+    
+    pendingReservationItemId = itemId;
+    reservationItemName.textContent = itemName;
+    reservationNameInput.value = '';
+    reservationModal.style.display = 'block';
+    reservationNameInput.focus();
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Hide reservation modal
+  function hideReservationModal() {
+    if (!reservationModal) return;
+    reservationModal.style.display = 'none';
+    pendingReservationItemId = null;
+    document.body.style.overflow = '';
+  }
+
+  // Setup modal event listeners
+  if (reservationCancelBtn) {
+    reservationCancelBtn.addEventListener('click', function() {
+      hideReservationModal();
+    });
+  }
+
+  if (reservationModal) {
+    // Close modal when clicking overlay
+    var overlay = reservationModal.querySelector('.reservation-modal-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', function() {
+        hideReservationModal();
+      });
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && reservationModal.style.display === 'block') {
+        hideReservationModal();
+      }
+    });
+
+    // Handle Enter key in name input
+    if (reservationNameInput) {
+      reservationNameInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (reservationConfirmBtn) reservationConfirmBtn.click();
+        }
+      });
+    }
+  }
+
   // Reserve an item
   function reserveItem(itemId) {
     // Reload items to get latest state
@@ -268,18 +332,66 @@ function success(rep){
         return Promise.reject(new Error('Item already taken'));
       }
 
-      if (!confirm('Möchten Sie dieses Geschenk wirklich reservieren?')) {
-        return Promise.reject(new Error('User cancelled'));
+      // Show modal to get user's name
+      showReservationModal(item.name, itemId);
+    })
+    .catch(function(error) {
+      if (error.message !== 'Item already taken' && error.message !== 'User cancelled') {
+        console.error('Error loading item:', error);
+        alert('Fehler beim Laden. Bitte versuchen Sie es erneut.');
+      }
+    });
+  }
+
+  // Confirm reservation with name
+  function confirmReservation() {
+    if (!pendingReservationItemId || !reservationNameInput) return;
+    
+    var name = reservationNameInput.value.trim();
+    if (!name) {
+      alert('Bitte geben Sie Ihren Namen ein.');
+      reservationNameInput.focus();
+      return;
+    }
+
+    var itemId = pendingReservationItemId;
+    hideReservationModal();
+
+    // Disable confirm button to prevent double submission
+    if (reservationConfirmBtn) {
+      reservationConfirmBtn.disabled = true;
+      reservationConfirmBtn.textContent = 'Wird gespeichert...';
+    }
+
+    // Reload items to get latest state
+    fetch(JSONBIN_READ_URL, {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': JSONBIN_API_KEY
+      }
+    })
+    .then(function(response) {
+      if (!response.ok) throw new Error('Failed to load wishlist');
+      return response.json();
+    })
+    .then(function(data) {
+      var items = data.record && data.record.items ? data.record.items : [];
+      var item = items.find(function(i) { return i.id === itemId; });
+      
+      if (!item || item.taken) {
+        alert('Dieses Geschenk wurde bereits reserviert.');
+        loadWishlist();
+        return Promise.reject(new Error('Item already taken'));
       }
 
       item.taken = true;
-      item.reservedBy = 'Ein Gast'; // You could collect name/email here
+      item.reservedBy = name;
       item.reservedAt = new Date().toISOString();
 
       return saveWishlist(items);
     })
     .then(function(result) {
-      alert('Geschenk erfolgreich reserviert! Vielen Dank!');
+      alert('Geschenk erfolgreich reserviert! Vielen Dank, ' + name + '!');
       loadWishlist();
     })
     .catch(function(error) {
@@ -288,7 +400,19 @@ function success(rep){
         alert('Fehler beim Reservieren. Bitte versuchen Sie es erneut.');
         loadWishlist();
       }
+    })
+    .finally(function() {
+      // Re-enable button
+      if (reservationConfirmBtn) {
+        reservationConfirmBtn.disabled = false;
+        reservationConfirmBtn.textContent = 'Reservieren';
+      }
     });
+  }
+
+  // Setup confirm button
+  if (reservationConfirmBtn) {
+    reservationConfirmBtn.addEventListener('click', confirmReservation);
   }
 
   // Add new item (admin only)
