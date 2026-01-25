@@ -256,6 +256,7 @@ a { color: var(--text); text-decoration: none; }
     border: none;
     position: relative;
     padding-left: 35%;
+    color: var(--section-text-dark) !important;
   }
   .timetable-table td:before {
     content: attr(data-label);
@@ -265,8 +266,14 @@ a { color: var(--text); text-decoration: none; }
     font-weight: 600;
     color: var(--primary);
   }
+  .timetable-table td:first-child {
+    color: var(--section-text-dark) !important;
+  }
   .timetable-table td:first-child:before {
     content: "Uhrzeit:";
+  }
+  .timetable-table td:nth-child(2) {
+    color: var(--section-text-dark) !important;
   }
   .timetable-table td:nth-child(2):before {
     content: "Programm:";
