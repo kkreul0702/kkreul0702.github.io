@@ -171,113 +171,35 @@ a { color: var(--text); text-decoration: none; }
 .time { font-weight: 600; font-variant-numeric: tabular-nums; }
 .event { color: var(--text-dim); }
 
-/* Timetable Table */
-.timetable-table {
-  font-family: 'Montserrat', sans-serif;
+/* Timetable List */
+.timetable-list {
+  display: grid;
+  gap: 1rem;
+}
+.timetable-entry {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.timetable-table thead {
-  background: var(--primary);
-  color: var(--btn-primary-text);
+.timetable-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.timetable-table th {
-  padding: 1rem;
-  text-align: left;
-  font-weight: 600;
-  font-size: 1rem;
-}
-.timetable-table tbody tr {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s;
-}
-.timetable-table tbody tr:last-child {
-  border-bottom: none;
-}
-.timetable-table tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-.timetable-table td {
-  padding: 1rem;
-  color: var(--section-text-dark);
-  font-size: 0.95rem;
-}
-.timetable-table td:first-child {
+.timetable-entry-time {
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: var(--section-text-dark);
-  white-space: nowrap;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
-.timetable-table td:nth-child(2) {
+.timetable-entry-event {
+  font-family: 'Montserrat', sans-serif;
   color: var(--section-text-dark);
-}
-
-@media (max-width: 768px) {
-  .timetable-table {
-    font-size: 0.9rem;
-  }
-  .timetable-table th,
-  .timetable-table td {
-    padding: 0.75rem 0.5rem;
-  }
-  .timetable-table td:first-child {
-    white-space: normal;
-  }
-}
-
-@media (max-width: 640px) {
-  .timetable-table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .timetable-table thead,
-  .timetable-table tbody,
-  .timetable-table tr,
-  .timetable-table th,
-  .timetable-table td {
-    display: block;
-  }
-  .timetable-table thead {
-    display: none;
-  }
-  .timetable-table tr {
-    margin-bottom: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.7);
-  }
-  .timetable-table td {
-    padding: 0.5rem;
-    text-align: left;
-    border: none;
-    position: relative;
-    padding-left: 35%;
-    color: var(--section-text-dark) !important;
-  }
-  .timetable-table td:before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0.5rem;
-    width: 30%;
-    font-weight: 600;
-    color: var(--primary);
-  }
-  .timetable-table td:first-child {
-    color: var(--section-text-dark) !important;
-  }
-  .timetable-table td:first-child:before {
-    content: "Uhrzeit:";
-  }
-  .timetable-table td:nth-child(2) {
-    color: var(--section-text-dark) !important;
-  }
-  .timetable-table td:nth-child(2):before {
-    content: "Programm:";
-  }
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .site-footer { text-align: center; padding: 36px 0; background: rgba(0,0,0,0.35); }
