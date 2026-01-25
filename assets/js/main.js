@@ -779,4 +779,91 @@ function success(rep){
   }
 })();
 
+// Music wish popup - appears after 30 seconds
+(function() {
+  // Wait for DOM to be ready
+  function initMusicWishPopup() {
+    var musicWishPopup = document.getElementById('music-wish-popup');
+    var musicWishPopupCloseBtn = document.getElementById('music-wish-popup-close-btn');
+    var musicWishPopupBtn = document.getElementById('music-wish-popup-btn');
+    var popupShown = false;
+    
+    if (!musicWishPopup) {
+      console.error('Music wish popup element not found');
+      return;
+    }
+    
+    console.log('Music wish popup initialized, element found:', musicWishPopup);
+    
+    // Check if popup was already shown in this session (disabled for testing)
+    // For testing, you can clear sessionStorage in console: sessionStorage.removeItem('musicWishPopupShown');
+    // if (sessionStorage.getItem('musicWishPopupShown') === 'true') {
+    //   console.log('Popup already shown in this session');
+    //   return; // Don't show popup if already shown
+    // }
+    
+    // Show popup after 5 seconds (for testing - change back to 30000 for production)
+    setTimeout(function() {
+      if (!popupShown && musicWishPopup) {
+        console.log('Showing music wish popup');
+        musicWishPopup.style.display = 'flex'; // Use flex to match reservation-modal CSS
+        document.body.style.overflow = 'hidden';
+        popupShown = true;
+        // sessionStorage.setItem('musicWishPopupShown', 'true'); // Disabled for testing
+      } else {
+        console.log('Popup not shown - popupShown:', popupShown, 'musicWishPopup:', musicWishPopup);
+      }
+    }, 5000); // 5 seconds for testing
+    
+    // Close popup when clicking close button
+    if (musicWishPopupCloseBtn) {
+      musicWishPopupCloseBtn.addEventListener('click', function() {
+        if (musicWishPopup) {
+          musicWishPopup.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Close popup when clicking overlay
+    if (musicWishPopup) {
+      var overlay = musicWishPopup.querySelector('.reservation-modal-overlay');
+      if (overlay) {
+        overlay.addEventListener('click', function() {
+          musicWishPopup.style.display = 'none';
+          document.body.style.overflow = '';
+        });
+      }
+      
+      // Close popup on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && musicWishPopup.style.display === 'flex') {
+          musicWishPopup.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Close popup when clicking the music wish button (it will navigate to the section)
+    if (musicWishPopupBtn) {
+      musicWishPopupBtn.addEventListener('click', function() {
+        // Small delay to allow smooth scroll
+        setTimeout(function() {
+          if (musicWishPopup) {
+            musicWishPopup.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        }, 100);
+      });
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMusicWishPopup);
+  } else {
+    initMusicWishPopup();
+  }
+})();
+
  

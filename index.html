@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Laura & Ken</title>
+    <title>Our Wedding</title>
     <meta name="description" content="Wedding website with details about wishlist, timetable, location, and hotels." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,7 @@
         <div class="container hero-inner">
           <h1 class="hero-title">Laura & Ken – wir sagen ja!</h1>
           <p class="hero-subtitle">04.07.2026</p>
-          <a class="btn primary" href="#timetable">Zum Tagesablauf</a>
+          <a class="btn primary" href="#rsvp">Jetzt Zusagen</a>
         </div>
       </section>
 
@@ -61,33 +61,14 @@
           <p><strong>Wann:</strong> 04.07.2026, Beginn 14.00 Uhr</p>
           <p><strong>Wo:</strong> Schlosscafé Köpenick</p>
           <p><strong>Ablauf:</strong></p>
-          <div class="timetable-list" style="margin-top: 1.5rem;">
-            <div class="timetable-entry">
-              <div class="timetable-entry-time">14.00 Uhr</div>
-              <div class="timetable-entry-event">Empfang in der Location</div>
-            </div>
-            <div class="timetable-entry">
-              <div class="timetable-entry-time">ca. 14.30 Uhr</div>
-              <div class="timetable-entry-event">Freie Trauung</div>
-            </div>
-            <div class="timetable-entry">
-              <div class="timetable-entry-time">ca. 15.30 Uhr</div>
-              <div class="timetable-entry-event">Anschnitt Hochzeitstorte &amp; Kaffeetrinken</div>
-            </div>
-            <div class="timetable-entry">
-              <div class="timetable-entry-time">ca. 16.30 Uhr</div>
-              <div class="timetable-entry-event">Fotoshooting</div>
-            </div>
-            <div class="timetable-entry">
-              <div class="timetable-entry-time">ca. 18.30 Uhr</div>
-              <div class="timetable-entry-event">Buffeteröffnung &amp; Abendessen</div>
-            </div>
-            <div class="timetable-entry">
-              <div class="timetable-entry-time">ca. 21.00 Uhr</div>
-              <div class="timetable-entry-event">Eröffnung der Tanzfläche</div>
-            </div>
-          </div>
-          <br>
+          <ul class="heart-list">
+            <li>14.00 Uhr: Eintreffen in der Location</li>
+            <li>Sektempfang im Schlosscafé Köpenick</li>
+            <li>Anschnitt der Hochzeitstorte &amp; Kaffeetrinken</li>
+            <li>Buffeteröffnung</li>
+            <li>Eröffnung der Tanzfläche</li>
+          </ul>
+           <br>
           <p><strong>Lasst uns zusammen feiern, lachen und tanzen!</strong></p>
         </div>
       </section>
@@ -95,9 +76,11 @@
       <section id="location" class="section">
         <div class="container">
           <h1>Location</h1>
-          <p>Unsere freie Trauung und anschließende Feier finden im Schlosscafé Köpenick statt.</p>
-          <p>Die Adresse lautet:
+          <p>Unsere Trauung findet im Standesamt Köpenick statt und anschließend feiern wir im Schlosscafé Köpenick.</p>
+          <p>Die Adressen lauten:
           <ul class="heart-list">
+            <li> <a href="https://maps.app.goo.gl/AJYqWovsHK24tNaM6" style="color: var(--primary); text-decoration: underline;">Standesamt Treptow-Köpenick von Berlin</a>, Alt-Köpenick 21, 12555 Berlin</li>
+            
             <li><a href="https://maps.app.goo.gl/wccppZguAMimKmGa7" style="color: var(--primary); text-decoration: underline;">Schlosscafé Köpenick</a>, Schlossinsel 1, 12557 Berlin</li>
           </ul>
            <br>
@@ -264,6 +247,19 @@
         <p>© <span id="year"></span> Created with love by Laura & Ken.</p>
       </div>
     </footer>
+
+    <!-- Music Wish Popup -->
+    <div id="music-wish-popup" class="reservation-modal" style="display: none;">
+      <div class="reservation-modal-overlay"></div>
+      <div class="reservation-modal-content">
+        <h2>Ohne euren Song kein perfekter Beat</h2>
+        <p class="reservation-prompt" style="margin-bottom: 1.5rem;">Unsere Playlist würde sich über Nachschub freuen. Teilt uns jetzt eure Lieblingssongs mit</p>
+        <div class="reservation-modal-buttons">
+          <a href="#music" class="btn primary" id="music-wish-popup-btn" style="text-decoration: none;">Musikwunsch hinzufügen</a>
+          <button class="btn" id="music-wish-popup-close-btn">Später</button>
+        </div>
+      </div>
+    </div>
 
     <script src="assets/js/main.js"></script>
   </body>
