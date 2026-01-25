@@ -813,7 +813,7 @@ function success(rep){
       } else {
         console.log('Popup not shown - popupShown:', popupShown, 'musicWishPopup:', musicWishPopup);
       }
-    }, 5000); // 5 seconds for testing
+    }, 15000); // 5 seconds for testing
     
     // Close popup when clicking close button
     if (musicWishPopupCloseBtn) {
